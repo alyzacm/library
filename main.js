@@ -18,7 +18,7 @@ function displayBooks(library){
 }
 
 function createBook(book){
-        const container = document.getElementById("container");
+        const container = document.getElementById("book-container");
         const bookDiv = document.createElement("div");
         const title = document.createElement("div");
         const author = document.createElement("div");
@@ -40,11 +40,17 @@ function createBook(book){
         bookDiv.appendChild(hasRead).className = "hasRead";
      
         container.appendChild(bookDiv);
+}
+
+function createForm(){
+    let f = document.createElement("form");
 
 }
 
+const addBookBtn = document.querySelector(".plus-btn");
+addBookBtn.addEventListener('click', createForm);
+
 addBookToLibrary("Harry Potter and the Prisoner of Azkaban", "JK Rowling", 435, true);
 addBookToLibrary("IQ84", "Haruki Murakami ", 928, true);
-displayBooks(myLibrary);
 
-
+displayBooks(myLibrary); 
