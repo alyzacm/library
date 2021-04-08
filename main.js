@@ -1,3 +1,5 @@
+const submitBtn = document.querySelector("#submit-btn");
+
 let myLibrary = [];
 
 function Book(title, author, pages, hasRead){
@@ -8,16 +10,18 @@ function Book(title, author, pages, hasRead){
 }
 
 function addBookToLibrary(title, author, pages, hasRead){
-    myLibrary.push(new Book(title, author, pages, hasRead));
+    const newBook = new Book(title, author, pages, hasRead);
+    myLibrary.push(newBook);
+    displayBook(newBook);
 }
 
-function displayBooks(library){
+function displayLibrary(library){
     library.forEach(function(book){
-        createBook(book);
+        displayBook(book);
     });
 }
 
-function createBook(book){
+function displayBook(book){
         const container = document.getElementById("book-container");
         const bookDiv = document.createElement("div");
         const title = document.createElement("div");
@@ -42,15 +46,33 @@ function createBook(book){
         container.appendChild(bookDiv);
 }
 
-function createForm(){
-    let f = document.createElement("form");
-
+function createBookFromInput(){
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const pages = document.querySelector("#pages").value;
+    const hasRead = document.querySelector("#hasRead").value;
+    addBookToLibrary(title, author, pages, hasRead);  
 }
 
-const addBookBtn = document.querySelector(".plus-btn");
-addBookBtn.addEventListener('click', createForm);
+function openForm(){
+    document.getElementById("book-form").style.display = "block";
+}
+
+function closeForm(){
+    document.getElementById("book-form").style.display = "none";
+}
+
+const form = document.getElementById("form-container");
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    createBookFromInput();
+    closeForm();
+    form.reset();
+})
 
 addBookToLibrary("Harry Potter and the Prisoner of Azkaban", "JK Rowling", 435, true);
 addBookToLibrary("IQ84", "Haruki Murakami ", 928, true);
 
-displayBooks(myLibrary); 
+
+// displayLibrary(myLibrary); 
+console.log(myLibrary);

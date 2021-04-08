@@ -15,18 +15,24 @@
         <!-- <form action=" /signup" method="post id="signup> -->
         <div id="book-container">
         </div>
-      <!--   <form>
-            
-            <input type="text" name="title" placeholder="Title"><br>
-            <input type="text" name="author" placeholder="Author"><br>
-            <input type="text" name="pages" placeholder="Pages"><br>
-            <label for="haveRead">Read: </label>
-            <input type="checkbox" id="haveRead" name="haveRead" value="True"><br>
-            <input type="submit" value="Submit">
-        </form> -->
+        <div class="form">
+            <div class="form-popup" id="book-form">
+                <form method="post" id="form-container">
+                    <h2>Add New Book</h2>
+                    <input type="text" id="title" name="title" placeholder="Title"><br>
+                    <input type="text" id="author" name="author" placeholder="Author"><br>
+                    <input type="text" id="pages" name="pages" placeholder="Pages"><br>
+                    <label for="hasRead">Read: </label>
+                    <input type="checkbox" id="hasRead" name="hasRead" value="True"><br><br>
+                    <button type="submit" id="submit-btn">Submit</button>
+                   <!-- <input type="submit" value="submit" id="submit-btn"> -->
+                   <!--  <button type="submit" id="cancel-btn" onclick="closeForm()">Close</button> -->
+                </form>
+            </div>
+        </div>
       
         <div class="btn-holder">
-              <button class="plus-btn">+</button>
+              <button class="plus-btn" onclick="openForm()">+</button>
         </div>
   
       
