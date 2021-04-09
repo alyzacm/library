@@ -1,4 +1,4 @@
-const submitBtn = document.querySelector("#submit-btn");
+// const submitBtn = document.querySelector("#submit-btn");
 
 let myLibrary = [];
 
@@ -11,8 +11,12 @@ function Book(title, author, pages, hasRead){
 
 function addBookToLibrary(title, author, pages, hasRead){
     const newBook = new Book(title, author, pages, hasRead);
+    let index = 0;
+    if(myLibrary.length != 0){
+        index = myLibrary.length;
+    }
     myLibrary.push(newBook);
-    displayBook(newBook);
+    displayBook(newBook, index);
 }
 
 function displayLibrary(library){
@@ -21,15 +25,17 @@ function displayLibrary(library){
     });
 }
 
-function displayBook(book){
+function displayBook(book, index){
         const container = document.getElementById("book-container");
         const bookDiv = document.createElement("div");
         const title = document.createElement("div");
         const author = document.createElement("div");
         const pages = document.createElement("div");
         const hasRead = document.createElement("div");
+        const removeBtn = document.createElement("button");
 
         bookDiv.classList.add("book");
+        
 
         title.textContent = book.title;
         bookDiv.appendChild(title).className = "title";
@@ -42,8 +48,20 @@ function displayBook(book){
 
         hasRead.textContent = book.hasRead;
         bookDiv.appendChild(hasRead).className = "hasRead";
-     
+
+        removeBtn.innerHTML = "Remove Book";
+        removeBtn.setAttribute("data-index", index);
+        removeBtn.onclick = removeBook;
+        bookDiv.appendChild(removeBtn).className = "removeButton";
+
         container.appendChild(bookDiv);
+}
+
+function removeBook(){
+    let index = this.getAttribute("data-index");
+    myLibrary.splice(index, 1);
+    const container = document.querySelector("#book-container");
+    container.removeChild(this.parentNode);
 }
 
 function createBookFromInput(){
@@ -73,6 +91,5 @@ form.addEventListener("submit", (event) => {
 addBookToLibrary("Harry Potter and the Prisoner of Azkaban", "JK Rowling", 435, true);
 addBookToLibrary("IQ84", "Haruki Murakami ", 928, true);
 
-
 // displayLibrary(myLibrary); 
-console.log(myLibrary);
+// console.log(myLibrary);
