@@ -31,7 +31,7 @@ function displayBook(book, index){
         const title = document.createElement("div");
         const author = document.createElement("div");
         const pages = document.createElement("div");
-        const hasRead = document.createElement("div");
+        const hasRead = document.createElement("button");
         const removeBtn = document.createElement("button");
 
         bookDiv.classList.add("book");
@@ -46,15 +46,38 @@ function displayBook(book, index){
         pages.textContent = book.pages + " pages";
         bookDiv.appendChild(pages).className = "pages";
 
-        hasRead.textContent = book.hasRead;
-        bookDiv.appendChild(hasRead).className = "hasRead";
+        styleReadStatus(hasRead, book.hasRead);
+        hasRead.setAttribute("id", "readButton");
+        hasRead.onclick = changeReadStatus;
+        bookDiv.appendChild(hasRead).className = "bookButtons";
 
-        removeBtn.innerHTML = "Remove Book";
+        removeBtn.innerHTML = "Remove";
         removeBtn.setAttribute("data-index", index);
+        removeBtn.setAttribute("id", "removeButton");
         removeBtn.onclick = removeBook;
-        bookDiv.appendChild(removeBtn).className = "removeButton";
+        bookDiv.appendChild(removeBtn).className = "bookButtons";
 
         container.appendChild(bookDiv);
+}
+
+function styleReadStatus(hasRead, hasReadVal){
+    if(hasReadVal){
+        hasRead.innerHTML = "Read";
+        hasRead.style.backgroundColor = "#E7D2CC"
+    }
+    else{
+
+        hasRead.innerHTML = "Not Read";
+        hasRead.style.backgroundColor = "#868B8E"
+    }
+}
+function changeReadStatus(){
+    if(this.innerHTML == "Read"){
+        styleReadStatus(this, false);
+    }
+    else{
+        styleReadStatus(this, true);
+    }
 }
 
 function removeBook(){
@@ -68,8 +91,9 @@ function createBookFromInput(){
     const title = document.querySelector("#title").value;
     const author = document.querySelector("#author").value;
     const pages = document.querySelector("#pages").value;
-    const hasRead = document.querySelector("#hasRead").value;
-    addBookToLibrary(title, author, pages, hasRead);  
+    const hasRead = document.querySelector("#hasRead");
+
+    addBookToLibrary(title, author, pages, hasRead.checked);  
 }
 
 function openForm(){
@@ -88,8 +112,16 @@ form.addEventListener("submit", (event) => {
     form.reset();
 })
 
+let cancelButton = document.getElementById("cancel-btn");
+cancelButton.addEventListener("click", function(){
+    closeForm();
+})
+
+
 addBookToLibrary("Harry Potter and the Prisoner of Azkaban", "JK Rowling", 435, true);
 addBookToLibrary("IQ84", "Haruki Murakami ", 928, true);
+addBookToLibrary("To All The Boys I've Loved Before", "Jenny Han", 421, true);
+addBookToLibrary("Invisible Monsters", "Chuck Palahniuk", 297, false);
 
 // displayLibrary(myLibrary); 
 // console.log(myLibrary);

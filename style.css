@@ -4,7 +4,8 @@ body{
 }
 
 button{
-    /*font-family: 'Roboto Slab', serif;*/
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.15rem;
 }
 
 #full-width{
@@ -42,18 +43,20 @@ h2{
     top: 150px;
     display: flex;
     flex-wrap: wrap;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .book{
     background-color: #B9B7BD;
     height: 275px;
-    width: 225px;
-    margin-left: 40px;
-    margin-bottom: 40px;
+    width: 190px;
     border-radius: 8px;
-    padding-left: 20px;
-    /*text-align: center;*/
+    border: 1px solid #868B8E;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: inline-block;
+    margin: 1em;
+    position: relative;
 }
 
 .btn-holder{
@@ -67,12 +70,16 @@ h2{
     width: 75px;
     font-size: 75px;
     border-radius: 100%;
-    background-color:  #E7D2CC;
+    background-color: #E7D2CC;
     border: none;
     text-align: center;
     line-height: 75px;
     outline: none;
     cursor: pointer;
+/*    display: flex;
+    justify-content: center;*/
+
+    /*vertical-align: middle;*/
 }
 
 .plus-btn:hover{
@@ -92,7 +99,6 @@ h2{
     top: 450px;
     left: 50%;
     /*z-index: -1;*/
-
 }
 
 .form-popup{
@@ -108,37 +114,62 @@ h2{
     margin-left: -200px;
     margin-right: -200px;
     z-index: 9;
-    
+    /*font-size: 1.15rem;*/ 
 }
 
 #form-container{
-    padding-top: 50px;
+    padding-top: 30px;
     background-color: #868B8E;
     height: 400px;
     width: 400px;
     border-radius: 8px;
 }
 
-/*div.form{
-    display: block;
-    text-align: center;
+.formButtons{
+    height: 30px;
+    width: 94px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #868B8E;
+    margin: 5px;
 }
 
-form{
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    //text-align: left;
+input[type=text]{
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #868B8E;
+    border-radius:10px;
+    outline: none;
 }
-*/
 
-.removeButton{
-    height: 20px;
+input, textarea{
+    font-family: inherit;
+    font-size: inherit;
+}
+
+label{
+    font-size: 1.25em;
+}
+
+#readButton{
+    margin-top: 20px;
+    left: 5%;
+}
+
+#removeButton{
+    right: 5%;
+}
+
+.bookButtons{
+    height: 30px;
+    width: 94px;
     border: none;
     outline: none;
     border-radius: 8px;
     position: absolute;
-    bottom: 60px;
-
+    bottom: 7%;
+    cursor: pointer;
+    border: 1px solid #868B8E;
 }
-
