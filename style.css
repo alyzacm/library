@@ -53,6 +53,7 @@ h2{
     display: flex;
     flex-wrap: wrap;
     font-size: 1.25rem;
+    padding-bottom: 100px;
 }
 
 .book{
@@ -122,6 +123,10 @@ h2{
     border-radius: 10px;
     border: 1px solid var(--gray);
     margin: 5px;
+}
+
+.formButtons:hover{
+    background-color: var(--pink);
 }
 
 #modal{
@@ -203,9 +208,10 @@ label input:checked ~ span:after{
 
 /*add book button*/
 .btn-holder{
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
+    position: fixed;
+    bottom: 10%;
+    right: 3%;
+    padding-bottom: 20px;
 }
 
 .plus-btn{
@@ -216,10 +222,22 @@ label input:checked ~ span:after{
     background-color: var(--pink);
     border: none;
     line-height: 75px;
-    margin: auto;
 }
 
 .plus-btn:hover{
     background-color: var(--gray);
+}
+
+.footer{
+    font-size: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 1px;
+    width: 100%;
+    background-color: var(--ivory);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 1px solid var(--gray);
 }
 

@@ -131,21 +131,22 @@ cancelButton.addEventListener("click", function(){
     closeForm();
 })
 
-// addBookToLibrary("Harry Potter and the Prisoner of Azkaban", "JK Rowling", 435, true);
-// addBookToLibrary("IQ84", "Haruki Murakami ", 928, true);
-// addBookToLibrary("To All The Boys I've Loved Before", "Jenny Han", 421, true);
-// addBookToLibrary("Invisible Monsters", "Chuck Palahniuk", 297, false);
-
 function populateStorage(){
     localStorage.setItem("storageLibrary", JSON.stringify(myLibrary));
 }
 
 function checkStorage(){
-    myLibrary = JSON.parse(localStorage.getItem("storageLibrary"));
-    if(myLibrary === null){
-        myLibrary = [];
+    if(localStorage.getItem("storageLibrary") !== "[]"){
+        myLibrary = JSON.parse(localStorage.getItem("storageLibrary"));
+        displayLibrary(myLibrary);
     }
-    displayLibrary(myLibrary);
+    else{
+        addBookToLibrary("Harry Potter and the Prisoner of Azkaban", "J.K. Rowling", 435, true);
+        addBookToLibrary("IQ84", "Haruki Murakami ", 928, true);
+        addBookToLibrary("To All The Boys I've Loved Before", "Jenny Han", 421, true);
+        addBookToLibrary("Invisible Monsters", "Chuck Palahniuk", 297, false);
+       
+    }
 }
 
 checkStorage();
