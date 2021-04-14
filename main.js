@@ -136,7 +136,8 @@ function populateStorage(){
 }
 
 function checkStorage(){
-    if(localStorage.getItem("storageLibrary") !== "[]"){
+    let storage = localStorage.getItem("storageLibrary");
+    if(storage!=null && storage!=undefined && storage != "[]"){
         myLibrary = JSON.parse(localStorage.getItem("storageLibrary"));
         displayLibrary(myLibrary);
     }
@@ -145,7 +146,6 @@ function checkStorage(){
         addBookToLibrary("IQ84", "Haruki Murakami ", 928, true);
         addBookToLibrary("To All The Boys I've Loved Before", "Jenny Han", 421, true);
         addBookToLibrary("Invisible Monsters", "Chuck Palahniuk", 297, false);
-       
     }
 }
 
