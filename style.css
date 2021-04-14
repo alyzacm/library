@@ -1,15 +1,24 @@
+:root{
+    --light-gray: #B9B7BD;
+    --gray: #868B8E;
+    --ivory: #EEEDE7;
+    --pink: #E7D2CC;
+}
+
 body{
     font-family: 'Roboto Slab', serif;
-    background-color: #EEEDE7;
+    background-color: var(--ivory);
 }
 
 button{
     font-family: 'Roboto Slab', serif;
     font-size: 1.15rem;
+    cursor: pointer;
+    outline: none;
 }
 
 #full-width{
-    background-color: #E7D2CC;
+    background-color: var(--pink);
     width: 100%;
     margin: 0;
     padding: 0;
@@ -39,7 +48,7 @@ h2{
 #book-container{
     position: relative;
     padding-left: 20px;
-    padding-top: 20px;
+    padding-top: 25px;
     top: 150px;
     display: flex;
     flex-wrap: wrap;
@@ -47,110 +56,16 @@ h2{
 }
 
 .book{
-    background-color: #B9B7BD;
+    background-color: var(--light-gray);
     height: 275px;
     width: 190px;
     border-radius: 8px;
-    border: 1px solid #868B8E;
+    border: 1px solid var(--gray);
     padding-left: 15px;
     padding-right: 15px;
     display: inline-block;
     margin: 1em;
     position: relative;
-}
-
-.btn-holder{
-    position: absolute;
-    bottom: 50px;
-    right: 50px;
-}
-
-.plus-btn{
-    height: 75px;
-    width: 75px;
-    font-size: 75px;
-    border-radius: 100%;
-    background-color: #E7D2CC;
-    border: none;
-    text-align: center;
-    line-height: 75px;
-    outline: none;
-    cursor: pointer;
-/*    display: flex;
-    justify-content: center;*/
-
-    /*vertical-align: middle;*/
-}
-
-.plus-btn:hover{
-    background-color: #868B8E;
-}
-
-.old-form-popup{
-    background-color: #868B8E;
-    height: 400px;
-    width: 400px;
-    position: absolute;
-    /*margin: 0 auto;*/
-    /*margin-left: 40px;*/
-    /*margin-bottom: 40px;*/
-    /*border-radius: 8px;*/
-    text-align: center;
-    top: 450px;
-    left: 50%;
-    /*z-index: -1;*/
-}
-
-.form-popup{
-    display: none;
-    position: absolute;
-    text-align: center;
-   /* top: 250px;
-    left: 25%;
-    margin: 0 auto;
-*/   
-    left: 50%;
-    top: 200px;
-    margin-left: -200px;
-    margin-right: -200px;
-    z-index: 9;
-    /*font-size: 1.15rem;*/ 
-}
-
-#form-container{
-    padding-top: 30px;
-    background-color: #868B8E;
-    height: 400px;
-    width: 400px;
-    border-radius: 8px;
-}
-
-.formButtons{
-    height: 30px;
-    width: 94px;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    cursor: pointer;
-    border: 1px solid #868B8E;
-    margin: 5px;
-}
-
-input[type=text]{
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #868B8E;
-    border-radius:10px;
-    outline: none;
-}
-
-input, textarea{
-    font-family: inherit;
-    font-size: inherit;
-}
-
-label{
-    font-size: 1.25em;
 }
 
 #readButton{
@@ -160,16 +75,151 @@ label{
 
 #removeButton{
     right: 5%;
+    background-color: var(--gray);
 }
 
 .bookButtons{
     height: 30px;
     width: 94px;
     border: none;
-    outline: none;
     border-radius: 8px;
     position: absolute;
     bottom: 7%;
-    cursor: pointer;
-    border: 1px solid #868B8E;
+    border: 1px solid black;
 }
+
+.read-btn{
+    background-color: var(--pink);
+}
+
+.not-read-btn{
+    background-color: var(--ivory);
+}
+
+/*form modal*/
+.form-popup{
+    display:none;
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 20%;
+    margin-left: -200px;
+    margin-right: -200px;
+}
+
+#form-container{
+    padding-top: 30px;
+    background-color: var(--gray);
+    height: 450px;
+    width: 375px;
+    border-radius: 8px;
+}
+
+.formButtons{
+    height: 30px;
+    width: 94px;
+    border: none;
+    border-radius: 10px;
+    border: 1px solid var(--gray);
+    margin: 5px;
+}
+
+#modal{
+    z-index: 1010;
+}
+
+.modal-overlay{
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: none;
+}
+
+.active{
+    display: block;
+}
+
+input[type=text]{
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--gray);
+    border-radius:10px;
+    outline: none;
+}
+
+input, textarea{
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/*custom checkbox*/
+label{
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+label input[type=checkbox]{ /*hide default checkbox*/
+    position:absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+label span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: var(--ivory);
+    transition: .4s background-color;
+}
+
+label span:after{
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 10px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+label input:checked ~ span {
+    background-color: var(--pink);
+}
+
+label input:checked ~ span:after{
+    display: block;
+}
+
+/*add book button*/
+.btn-holder{
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+.plus-btn{
+    height: 75px;
+    width: 75px;
+    font-size: 75px;
+    border-radius: 100%;
+    background-color: var(--pink);
+    border: none;
+    line-height: 75px;
+    margin: auto;
+}
+
+.plus-btn:hover{
+    background-color: var(--gray);
+}
+

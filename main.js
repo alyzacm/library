@@ -1,5 +1,3 @@
-// const submitBtn = document.querySelector("#submit-btn");
-
 let myLibrary = [];
 
 function Book(title, author, pages, hasRead){
@@ -17,11 +15,14 @@ function addBookToLibrary(title, author, pages, hasRead){
     }
     myLibrary.push(newBook);
     displayBook(newBook, index);
+    populateStorage();
 }
 
 function displayLibrary(library){
+    let i = 0;
     library.forEach(function(book){
-        displayBook(book);
+        displayBook(book, i);
+        i++;
     });
 }
 
@@ -35,7 +36,6 @@ function displayBook(book, index){
         const removeBtn = document.createElement("button");
 
         bookDiv.classList.add("book");
-        
 
         title.textContent = book.title;
         bookDiv.appendChild(title).className = "title";
@@ -46,13 +46,13 @@ function displayBook(book, index){
         pages.textContent = book.pages + " pages";
         bookDiv.appendChild(pages).className = "pages";
 
-        styleReadStatus(hasRead, book.hasRead);
+        setReadStatus(hasRead, book.hasRead, index);
         hasRead.setAttribute("id", "readButton");
-        hasRead.onclick = changeReadStatus;
-        bookDiv.appendChild(hasRead).className = "bookButtons";
+        hasRead.setAttribute("data-index", index);
+        hasRead.onclick = toggleReadStatus;
+        bookDiv.appendChild(hasRead).className += " bookButtons";
 
         removeBtn.innerHTML = "Remove";
-        removeBtn.setAttribute("data-index", index);
         removeBtn.setAttribute("id", "removeButton");
         removeBtn.onclick = removeBook;
         bookDiv.appendChild(removeBtn).className = "bookButtons";
@@ -60,31 +60,40 @@ function displayBook(book, index){
         container.appendChild(bookDiv);
 }
 
-function styleReadStatus(hasRead, hasReadVal){
+function setReadStatus(hasRead, hasReadVal){
     if(hasReadVal){
         hasRead.innerHTML = "Read";
-        hasRead.style.backgroundColor = "#E7D2CC"
+        hasRead.classList.add("read-btn");
+        hasRead.classList.remove("not-read-btn");
+
     }
     else{
-
         hasRead.innerHTML = "Not Read";
-        hasRead.style.backgroundColor = "#868B8E"
+        hasRead.classList.add("not-read-btn");
+        hasRead.classList.remove("read-btn");
     }
 }
-function changeReadStatus(){
+
+function toggleReadStatus(e){
+    let index = this.getAttribute("data-index");
+    myLibrary[index].hasRead = !(myLibrary[index].hasRead);
+
     if(this.innerHTML == "Read"){
-        styleReadStatus(this, false);
+        setReadStatus(this, false);
     }
     else{
-        styleReadStatus(this, true);
+        setReadStatus(this, true);
     }
+    populateStorage();
 }
 
 function removeBook(){
-    let index = this.getAttribute("data-index");
-    myLibrary.splice(index, 1);
+    let bookTitle = this.parentNode.firstChild.innerHTML;
+    myLibrary = myLibrary.filter(book => book.title !== bookTitle);
+
     const container = document.querySelector("#book-container");
     container.removeChild(this.parentNode);
+    populateStorage();
 }
 
 function createBookFromInput(){
@@ -96,12 +105,17 @@ function createBookFromInput(){
     addBookToLibrary(title, author, pages, hasRead.checked);  
 }
 
+let modal = document.querySelector("#modal");
+let modalOverlay = document.querySelector("#modal-overlay");
+
 function openForm(){
-    document.getElementById("book-form").style.display = "block";
+    modal.classList.add("active");
+    modalOverlay.classList.add("active");
 }
 
 function closeForm(){
-    document.getElementById("book-form").style.display = "none";
+    modal.classList.remove("active");
+    modalOverlay.classList.remove("active");
 }
 
 const form = document.getElementById("form-container");
@@ -117,11 +131,21 @@ cancelButton.addEventListener("click", function(){
     closeForm();
 })
 
+// addBookToLibrary("Harry Potter and the Prisoner of Azkaban", "JK Rowling", 435, true);
+// addBookToLibrary("IQ84", "Haruki Murakami ", 928, true);
+// addBookToLibrary("To All The Boys I've Loved Before", "Jenny Han", 421, true);
+// addBookToLibrary("Invisible Monsters", "Chuck Palahniuk", 297, false);
 
-addBookToLibrary("Harry Potter and the Prisoner of Azkaban", "JK Rowling", 435, true);
-addBookToLibrary("IQ84", "Haruki Murakami ", 928, true);
-addBookToLibrary("To All The Boys I've Loved Before", "Jenny Han", 421, true);
-addBookToLibrary("Invisible Monsters", "Chuck Palahniuk", 297, false);
+function populateStorage(){
+    localStorage.setItem("storageLibrary", JSON.stringify(myLibrary));
+}
 
-// displayLibrary(myLibrary); 
-// console.log(myLibrary);
+function checkStorage(){
+    myLibrary = JSON.parse(localStorage.getItem("storageLibrary"));
+    if(myLibrary === null){
+        myLibrary = [];
+    }
+    displayLibrary(myLibrary);
+}
+
+checkStorage();

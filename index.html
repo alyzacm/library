@@ -8,25 +8,30 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=block" rel="stylesheet">
     </head>
     
-    <body>
+    <body> 
         <div id="full-width">
             <h1>Library</h1>
         </div>
         <div id="book-container"></div>
+
         <div class="form">
-            <div class="form-popup" id="book-form">
+            <div class="form-popup" id="modal">
                 <form method="post" id="form-container">
                     <h2>Add New Book</h2>
-                    <input type="text" id="title" name="title" placeholder="Title"><br>
-                    <input type="text" id="author" name="author" placeholder="Author"><br>
-                    <input type="text" id="pages" name="pages" placeholder="Pages"><br>
-                    <label for="hasRead">Read: </label>
-                    <input type="checkbox" id="hasRead" name="hasRead" value="True"><br><br>
+                    <input type="text" id="title" name="title" placeholder="Title" required><br>
+                    <input type="text" id="author" name="author" placeholder="Author" required><br>
+                    <input type="text" id="pages" name="pages" placeholder="Pages" required><br>
+                    <label for="hasRead">I have read this book
+                        <input type="checkbox" id="hasRead" name="hasRead" value="True"><br><br><br>
+                        <span></span>
+                    </label>
                     <button type="submit" id="submit-btn" class="formButtons">Submit</button>
                     <button type="reset" id="cancel-btn" class="formButtons">Cancel</button>
                 </form>
             </div>
         </div>
+        <div class="modal-overlay" id ="modal-overlay"></div>
+        
       
         <div class="btn-holder">
               <button class="plus-btn" onclick="openForm()">+</button>
