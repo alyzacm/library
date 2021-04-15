@@ -1,5 +1,5 @@
 # library
-Simple Library app built using HTML/CSS/Javascript for The Odin Project [curriculum] (https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/library).
+Simple Library app built using HTML/CSS/Javascript for The Odin Project [curriculum](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/library).
 
 Live preview: [here](https://alyzacm.github.io/library/)
 
